@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isAnonymousParticipant() {
+      return signedIn() && request.auth.token.firebase.sign_in_provider == 'anonymous';
+    }
+    function isModerator() {
+      // Sustituir por el UID real del moderador antes de publicar.
+      return signedIn() && request.auth.uid == 'REEMPLAZAR_UID_MODERADOR';
+    }
+    function validQuestionCreate() {
+      let d = request.resource.data;
+      return d.keys().hasAll(['senderUid', 'name', 'question', 'createdAt', 'status', 'answer', 'answeredAt', 'answeredBy'])
+        && d.keys().hasOnly(['senderUid', 'name', 'question', 'createdAt', 'status', 'answer', 'answeredAt', 'answeredBy'])
+        && d.senderUid is string && d.senderUid == request.auth.uid
+        && d.name is string && d.name.size() >= 2 && d.name.size() <= 60
+        && d.question is string && d.question.size() >= 10 && d.question.size() <= 1000
+        && d.createdAt == request.time
+        && d.status == 'pendiente'
+        && d.answer is string && d.answer == ''
+        && d.answeredAt == null && d.answeredBy == null;
+    }
+    function validModeratorUpdate() {
+      let before = resource.data;
+      let after = request.resource.data;
+      return isModerator()
+        && after.diff(before).affectedKeys().hasOnly(['status', 'answer', 'answeredAt', 'answeredBy'])
+        && after.keys().hasOnly(['senderUid', 'name', 'question', 'createdAt', 'status', 'answer', 'answeredAt', 'answeredBy'])
+        && after.senderUid == before.senderUid
+        && after.name == before.name
+        && after.question == before.question
+        && after.createdAt == before.createdAt
+        && after.status == 'atendida'
+        && after.answer is string && after.answer.size() <= 1000
+        && after.answeredAt == request.time
+        && after.answeredBy == request.auth.uid;
+    }
+
+    match /preguntas/{questionId} {
+      allow create: if isAnonymousParticipant() && validQuestionCreate();
+      allow get, list: if isModerator();
+      allow update: if validModeratorUpdate();
+      allow delete: if isModerator();
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
