@@ -4,7 +4,7 @@ Sitio estático preparado para GitHub Pages y preguntas privadas con Firebase. C
 
 ## Estado honesto
 
-El proyecto Firebase `proyectos-silvio` ya existe. El código web se entrega preparado, pero Firebase todavía requiere terminar la app web, Authentication, Firestore, UID de moderación y App Check. Hasta completar esos pasos, el formulario deshabilita el envío y el panel no inicia sesión. **No está publicado ni probado en producción; no compartir aún el QR como operativo.** No se suben contraseñas, cuentas, claves privadas ni credenciales administrativas.
+La app web y Firestore de `proyectos-silvio` ya están creadas; Firestore está en `us-central1` y los métodos anónimo y correo/contraseña están habilitados. El repositorio público ya contiene el código, pero GitHub Pages no está activado. Falta crear la cuenta moderadora, sustituir `REEMPLAZAR_UID_MODERADOR` por su UID en las reglas y volverlas a publicar. **No uses ni compartas el QR todavía:** falta habilitar el acceso real del moderador y completar la verificación en vivo. App Check no está configurado; las pruebas del emulador están escritas, pero no pudieron ejecutarse en este equipo. No se suben contraseñas, cuentas, claves privadas ni credenciales administrativas.
 
 ## Rutas
 
@@ -20,13 +20,12 @@ El proyecto Firebase `proyectos-silvio` ya existe. El código web se entrega pre
 
 Proyecto: `proyectos-silvio`.
 
-1. En Firebase Console, agregá una **aplicación web** al proyecto y copiá `apiKey`, `authDomain`, `projectId`, `appId` y `messagingSenderId` desde el objeto de configuración del SDK.
-2. Pegá esos identificadores en `assets/config.js`, sustituyendo `REEMPLAZAR_API_KEY` y los demás marcadores. Son configuración pública del cliente web, no una contraseña. No añadas aquí archivos de cuenta de servicio, claves privadas ni contraseñas.
-3. En **Authentication → Sign-in method**, habilitá `Anonymous` y `Email/Password`. No habilites registro público por correo. En **Configuración → Dominios autorizados**, agregá el dominio `USUARIO.github.io` que corresponda a la cuenta del repositorio.
-4. En **Firestore Database**, crea la base de datos de producción en `us-central1` (región seleccionada). Luego publica `firestore.rules` desde el editor de reglas de la consola o con Firebase CLI. No cambies a reglas abiertas.
-5. En **Authentication → Users**, crea tu usuario moderador. Copiá su **UID**, nunca la contraseña. En `firestore.rules`, reemplazá `REEMPLAZAR_UID_MODERADOR` por ese UID y vuelve a publicar las reglas. El panel no tiene registro de administradores.
-6. En App Check, registra la aplicación web con **reCAPTCHA Enterprise**. En `assets/config.js`, pega su clave pública del sitio en `appCheckSiteKey`. Observa métricas y luego activa la aplicación de App Check para Cloud Firestore en Firebase Console. Primero comprueba que envíos y escucha ya funcionan; una clave/registro incorrectos harán que Firestore rechace solicitudes cuando esté enforced.
-7. Confirma el identificador de proyecto en el archivo `firebase.json`/Firebase CLI, despliega las reglas y ejecuta las pruebas indicadas abajo antes de abrir la aplicación.
+1. La app web registrada es **INTUR Estelí · Conferencia**; la configuración pública ya está en `assets/config.js`. No es necesario volver a crearla.
+2. En **Authentication → Users**, crea tu usuario moderador. Ingresa la contraseña directamente en Firebase Console y no la compartas. Copia el **UID** de la cuenta.
+3. En `firestore.rules`, reemplaza `REEMPLAZAR_UID_MODERADOR` por ese UID. Publica el archivo actualizado en Cloud Firestore Rules desde la consola o Firebase CLI. Esta versión permite al moderador eliminar preguntas, pero participantes no pueden hacerlo ni leerlas.
+4. En **Configuración → Dominios autorizados**, agrega `Silviotif89.github.io` cuando habilites GitHub Pages.
+5. En App Check, registra la app web con **reCAPTCHA Enterprise**. Pega su clave pública en `assets/config.js` y observa métricas antes de activar enforcement para Cloud Firestore.
+6. Ejecuta las pruebas indicadas abajo. Java y una conexión local de loopback disponibles son necesarios para Firestore Emulator; en el equipo de desarrollo el emulador no logró iniciar.
 
 ### Firebase CLI y reglas
 
@@ -44,8 +43,8 @@ Las pruebas locales usan un proyecto de demostración `demo-intur-esteli`, Fires
 
 ## Publicar en GitHub Pages
 
-1. Crea un repositorio independiente para esta conferencia y agrega el contenido de esta carpeta en la raíz de la rama `main`.
-2. En **Settings → Pages**, configura despliegue desde `main` y carpeta raíz (`/`). Espera a que GitHub publique el sitio en HTTPS.
+1. El repositorio independiente ya está creado: [Silviotif89/intur-esteli-conferencia-2026](https://github.com/Silviotif89/intur-esteli-conferencia-2026). El código está en `main`.
+2. Después de completar el UID del moderador y desplegar las reglas actualizadas, en **Settings → Pages** configura despliegue desde `main` y carpeta raíz (`/`). Espera a que GitHub publique el sitio en HTTPS.
 3. Copia la URL final completa a `publicSiteBase` en `assets/config.js`, incluyendo la subruta del repositorio y una `/` final; por ejemplo `https://USUARIO.github.io/NOMBRE-REPO/`. Haz commit. No sustituyas esta dirección por una URL inventada.
 4. La URL visible del formulario y el QR se generan en la página a partir de la ruta relativa `preguntas.html`; respeta automáticamente la subruta de GitHub Pages.
 5. Prueba `index.html`, el formulario desde un teléfono, `moderador.html`, Firestore en tiempo real y los avisos en dos navegadores antes de la capacitación.
