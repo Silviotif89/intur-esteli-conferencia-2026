@@ -6,8 +6,7 @@ service cloud.firestore {
       return signedIn() && request.auth.token.firebase.sign_in_provider == 'anonymous';
     }
     function isModerator() {
-      // Sustituir por el UID real del moderador antes de publicar.
-      return signedIn() && request.auth.uid == 'REEMPLAZAR_UID_MODERADOR';
+      return signedIn() && request.auth.uid == 'nnVLalsGNmSDDmyLN7d7lFWBirL2';
     }
     function validQuestionCreate() {
       let d = request.resource.data;

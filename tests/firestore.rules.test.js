@@ -10,7 +10,7 @@ const moderatorUid = 'moderator-demo';
 const valid = uid => ({ senderUid: uid, name: 'Participante Demo', question: '¿Cómo se diseña una experiencia turística sostenible?', createdAt: serverTimestamp(), status: 'pendiente', answer: '', answeredAt: null, answeredBy: null });
 
 before(async () => {
-  let rules = fs.readFileSync(new URL('../firestore.rules', import.meta.url), 'utf8').replace('REEMPLAZAR_UID_MODERADOR', moderatorUid);
+  let rules = fs.readFileSync(new URL('../firestore.rules', import.meta.url), 'utf8').replace('nnVLalsGNmSDDmyLN7d7lFWBirL2', moderatorUid);
   env = await initializeTestEnvironment({ projectId, firestore: { rules, host: '127.0.0.1', port: 8080 } });
 });
 after(async () => { await env?.cleanup(); });
@@ -57,3 +57,4 @@ describe('reglas Firestore INTUR Estelí', () => {
     assert.equal(await event, '¿Cómo se diseña una experiencia turística sostenible?');
   });
 });
+
