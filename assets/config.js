@@ -9,5 +9,6 @@ window.INTUR_QA_CONFIG = {
   // ReCaptcha Enterprise: agregar la clave pública después de registrar App Check.
   appCheckSiteKey: "",
   // URL de origen publicada por GitHub Pages; conserva la subruta del repositorio.
-  publicSiteBase: ""
+  publicSiteBase: "https://silviotif89.github.io/intur-esteli-conferencia-2026/"
 };
+

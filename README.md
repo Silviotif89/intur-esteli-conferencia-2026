@@ -23,7 +23,7 @@ Proyecto: `proyectos-silvio`.
 1. La app web registrada es **INTUR Estelí · Conferencia**; la configuración pública ya está en `assets/config.js`. No es necesario volver a crearla.
 2. El usuario moderador ya está creado en **Authentication → Users**; el UID está configurado en `firestore.rules`.
 3. Las reglas `firestore.rules` ya están publicadas. Esa cuenta puede leer, responder y eliminar preguntas; los participantes solo pueden enviar preguntas válidas y no pueden leerlas ni borrarlas.
-4. En **Configuración → Dominios autorizados**, agrega `Silviotif89.github.io` cuando habilites GitHub Pages.
+4. GitHub Pages ya está configurado desde `main`/raíz y el dominio `silviotif89.github.io` ya se agregó a **Authentication → Configuración → Dominios autorizados**. El primer build está en curso; verifica que la URL responda antes de compartirla.
 5. En App Check, registra la app web con **reCAPTCHA Enterprise**. Pega su clave pública en `assets/config.js` y observa métricas antes de activar enforcement para Cloud Firestore.
 6. Ejecuta las pruebas indicadas abajo. Java y una conexión local de loopback disponibles son necesarios para Firestore Emulator; en el equipo de desarrollo el emulador no logró iniciar.
 
@@ -44,8 +44,8 @@ Las pruebas locales usan un proyecto de demostración `demo-intur-esteli`, Fires
 ## Publicar en GitHub Pages
 
 1. El repositorio independiente ya está creado: [Silviotif89/intur-esteli-conferencia-2026](https://github.com/Silviotif89/intur-esteli-conferencia-2026). El código está en `main`.
-2. El UID del moderador y las reglas ya están configurados en Firebase. En **Settings → Pages** configura despliegue desde `main` y carpeta raíz (`/`). Espera a que GitHub publique el sitio en HTTPS.
-3. Copia la URL final completa a `publicSiteBase` en `assets/config.js`, incluyendo la subruta del repositorio y una `/` final; por ejemplo `https://USUARIO.github.io/NOMBRE-REPO/`. Haz commit. No sustituyas esta dirección por una URL inventada.
+2. GitHub Pages ya está configurado desde `main` y carpeta raíz (`/`). Espera a que termine el build y abre la URL para verificarla.
+3. `assets/config.js` ya contiene la URL real `https://silviotif89.github.io/intur-esteli-conferencia-2026/`. El formulario y el QR usan esa ruta con la subcarpeta del repositorio.
 4. La URL visible del formulario y el QR se generan en la página a partir de la ruta relativa `preguntas.html`; respeta automáticamente la subruta de GitHub Pages.
 5. Prueba `index.html`, el formulario desde un teléfono, `moderador.html`, Firestore en tiempo real y los avisos en dos navegadores antes de la capacitación.
 
@@ -65,4 +65,5 @@ Las pruebas locales usan un proyecto de demostración `demo-intur-esteli`, Fires
 - [Listeners de Firestore en tiempo real](https://firebase.google.com/docs/firestore/query-data/listen)
 - [App Check web con reCAPTCHA Enterprise](https://firebase.google.com/docs/app-check/web/recaptcha-enterprise-provider)
 - [Pruebas de Security Rules](https://firebase.google.com/docs/rules/unit-tests)
+
 
