@@ -4,7 +4,7 @@ Sitio estático preparado para GitHub Pages y preguntas privadas con Firebase. C
 
 ## Estado honesto
 
-La app web y Firestore de `proyectos-silvio` ya están creadas; Firestore está en `us-central1`, los métodos anónimo y correo/contraseña están habilitados y la cuenta moderadora ya existe. El repositorio público y GitHub Pages ya están activos. Se verificó la carga de la presentación de 55 diapositivas, el QR con la URL real del formulario, el formulario público y la pantalla de acceso del moderador; estas páginas no produjeron errores de JavaScript. Las reglas con el UID de la cuenta administradora ya están publicadas en Firestore. **Aún no se confirma el envío y la recepción de una pregunta en producción:** falta iniciar sesión en el panel con la cuenta administradora y completar esa prueba. App Check no está configurado y las pruebas del emulador no pudieron ejecutarse en este equipo. No se suben contraseñas ni claves privadas.
+La app web y Firestore de `proyectos-silvio` ya están creadas; Firestore está en `us-central1`, los métodos anónimo y correo/contraseña están habilitados y la cuenta moderadora ya existe. El repositorio público y GitHub Pages ya están activos. Se verificó la carga de la presentación de 55 diapositivas, el QR con la URL real del formulario, el formulario público y la pantalla de acceso del moderador; estas páginas no produjeron errores de JavaScript. Las reglas con el UID de la cuenta administradora ya están publicadas en Firestore. **Aún no se confirma el envío y la recepción de una pregunta en producción:** falta iniciar sesión en el panel con la cuenta administradora y completar esa prueba. App Check quedó registrado con Fraud Defense/reCAPTCHA Enterprise y conectado al cliente web. El enforcement de Firestore se mantiene apagado hasta probar el flujo real y revisar métricas; las pruebas del emulador no pudieron ejecutarse en este equipo. No se suben contraseñas ni claves privadas.
 
 ## Rutas
 
@@ -24,7 +24,7 @@ Proyecto: `proyectos-silvio`.
 2. El usuario moderador ya está creado en **Authentication → Users**; el UID está configurado en `firestore.rules`.
 3. Las reglas `firestore.rules` ya están publicadas. Esa cuenta puede leer, responder y eliminar preguntas; los participantes solo pueden enviar preguntas válidas y no pueden leerlas ni borrarlas.
 4. GitHub Pages está configurado desde `main`/raíz y el dominio `silviotif89.github.io` se agregó a **Authentication → Configuración → Dominios autorizados**. La URL real carga la presentación y el formulario.
-5. En App Check, registra la app web con **reCAPTCHA Enterprise**. Pega su clave pública en `assets/config.js` y observa métricas antes de activar enforcement para Cloud Firestore.
+5. App Check ya está registrado con **Fraud Defense/reCAPTCHA Enterprise**, limitado al dominio de GitHub Pages y con la clave pública configurada en `assets/config.js`. Revisa las métricas después de una prueba real antes de activar enforcement para Cloud Firestore.
 6. Ejecuta las pruebas indicadas abajo. Java y una conexión local de loopback disponibles son necesarios para Firestore Emulator; en el equipo de desarrollo el emulador no logró iniciar.
 
 ### Firebase CLI y reglas
@@ -47,7 +47,7 @@ Las pruebas locales usan un proyecto de demostración `demo-intur-esteli`, Fires
 2. GitHub Pages está publicado desde `main` y carpeta raíz (`/`); el build terminó correctamente y la URL fue verificada.
 3. `assets/config.js` ya contiene la URL real `https://silviotif89.github.io/intur-esteli-conferencia-2026/`. El formulario y el QR usan esa ruta con la subcarpeta del repositorio.
 4. La URL visible del formulario y el QR se generan en la página a partir de la ruta relativa `preguntas.html`; respeta automáticamente la subruta de GitHub Pages.
-5. Antes de una capacitación, inicia sesión en `moderador.html` y prueba con una pregunta de prueba que aparezca en la campana en tiempo real, atiéndela y verifica las notificaciones en dos navegadores. App Check y el emulador de reglas aún requieren configuración/prueba.
+5. Antes de una capacitación, inicia sesión en `moderador.html` y prueba con una pregunta de prueba que aparezca en la campana en tiempo real, atiéndela y verifica las notificaciones en dos navegadores. App Check está integrado; el enforcement y el emulador de reglas aún requieren verificación.
 
 ## Seguridad, privacidad y límites
 
@@ -65,6 +65,8 @@ Las pruebas locales usan un proyecto de demostración `demo-intur-esteli`, Fires
 - [Listeners de Firestore en tiempo real](https://firebase.google.com/docs/firestore/query-data/listen)
 - [App Check web con reCAPTCHA Enterprise](https://firebase.google.com/docs/app-check/web/recaptcha-enterprise-provider)
 - [Pruebas de Security Rules](https://firebase.google.com/docs/rules/unit-tests)
+
+
 
 
 

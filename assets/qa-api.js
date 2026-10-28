@@ -6,14 +6,17 @@ import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSn
 const cfg = window.INTUR_QA_CONFIG || {};
 export const configured = Boolean(cfg.apiKey && cfg.projectId && cfg.appId && !String(cfg.apiKey).startsWith("REEMPLAZAR") && !String(cfg.appId).startsWith("REEMPLAZAR"));
 export const configMessage = "El formulario todavía no está conectado. El administrador debe completar la configuración pública de Firebase en assets/config.js.";
+const appCheckInstances = new WeakMap();
 
 function createClient(name, session = false) {
   if (!configured) throw new Error(configMessage);
   const options = { apiKey: cfg.apiKey, authDomain: cfg.authDomain, projectId: cfg.projectId, appId: cfg.appId, messagingSenderId: cfg.messagingSenderId };
   const app = getApps().find(existing => existing.name === name) || initializeApp(options, name);
-  if (cfg.appCheckSiteKey) {
-    try { initializeAppCheck(app, { provider: new ReCaptchaEnterpriseProvider(cfg.appCheckSiteKey), isTokenAutoRefreshEnabled: true }); }
-    catch (error) { console.warn("App Check no pudo iniciarse:", error); }
+  if (cfg.appCheckSiteKey && !appCheckInstances.has(app)) {
+    appCheckInstances.set(app, initializeAppCheck(app, {
+      provider: new ReCaptchaEnterpriseProvider(cfg.appCheckSiteKey),
+      isTokenAutoRefreshEnabled: true
+    }));
   }
   const auth = getAuth(app);
   const db = getFirestore(app);
