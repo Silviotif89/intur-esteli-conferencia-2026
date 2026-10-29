@@ -1,0 +1,149 @@
+/* Sistema editorial de la conferencia. Los colores proceden del logotipo INTUR. */
+:root{--night:#171548;--night-deep:#100f36;--indigo:#242466;--pink:#ea088c;--sky:#26abe2;--green:#14a751;--yellow:#ffcb0c;--paper:#fbf9f6}
+html,body{font-family:'Aptos Display','Segoe UI Variable Display','Segoe UI',Arial,sans-serif}
+#viewport{background:radial-gradient(ellipse at 50% 35%,#34317a 0%,#0e0d30 70%)}
+#stage{box-shadow:0 28px 90px #050421a8}
+.slide{overflow:clip;background:radial-gradient(ellipse at 92% 5%,#32499267 0%,transparent 38%),linear-gradient(135deg,#111038 4%,#23225c 65%,#1b1a4b 100%)}
+.slide.cream{background:radial-gradient(ellipse at 92% 4%,#dbf1f8 0%,transparent 40%),linear-gradient(135deg,#fffdfa 6%,#f3f1f9 100%)}
+.slide:before{right:-205px;top:-205px;width:700px;height:700px;border:1px solid currentColor;opacity:.038;box-shadow:0 0 0 65px currentColor,0 0 0 128px currentColor}
+.slide:after{width:620px;height:250px;left:-340px;bottom:-200px;opacity:.09;filter:blur(90px)}
+.head{left:78px;right:78px;top:25px;height:75px;padding-bottom:8px;border-bottom-color:#d7d9ff28}
+.cream .head{border-bottom-color:#24246620}
+.logo{width:222px;height:69px;padding:8px 12px;border-radius:10px;box-shadow:0 6px 20px #08092925}
+.head-right{margin-right:610px;gap:13px;font-size:12px;letter-spacing:.16em;white-space:nowrap;font-weight:800}
+.head-right span:first-child:before{content:'';display:inline-block;width:7px;height:7px;margin-right:10px;border-radius:50%;background:var(--yellow);vertical-align:2px}
+.cream .head-right span:first-child:before{background:var(--pink)}
+.main{left:85px;right:85px;top:137px;bottom:103px}
+.kicker{font-size:15px;letter-spacing:.22em;margin-bottom:10px;color:#ffe17a}
+.cream .kicker{color:#a70765}
+.title{font-size:61px;line-height:1.06;letter-spacing:-.046em;margin-bottom:13px;max-width:1410px;font-weight:840}
+.deck{font-size:23px;line-height:1.35;margin-bottom:24px;max-width:1375px;opacity:.9;letter-spacing:-.018em}
+.cream .deck{color:#43446c;opacity:1}
+.visual{min-height:0}
+.focus{margin-top:16px;padding:15px 21px 15px 23px;border:0;border-left:4px solid var(--yellow);border-radius:0 9px 9px 0;background:#ffffff12;font-size:20px;line-height:1.31;font-weight:700;letter-spacing:-.012em}
+.cream .focus{border-left-color:var(--pink);background:#eceaf5;color:#28285b}
+.source{bottom:90px;right:85px;font-size:11px;letter-spacing:.025em;opacity:.61}
+.foot{left:80px;right:80px;bottom:24px;height:50px;gap:13px;font-size:13px}
+.foot .keys{font-size:13px;opacity:.56;white-space:nowrap}
+.progress{height:3px;border-radius:0;background:#ffffff30}
+.cream .progress{background:#2424662e}
+.arrowBtn{height:42px;min-width:48px;border-radius:8px;background:#ffffff14;border:1px solid #dcd9ff47;font-size:20px;transition:background .18s ease,transform .18s ease}
+.cream .arrowBtn{background:#fff;border-color:#d9d6eb}
+.arrowBtn:hover{background:#26abe244;transform:translateY(-2px)}
+.page{font-size:14px;letter-spacing:.1em;margin-left:7px;font-variant-numeric:tabular-nums}
+
+/* Tarjetas con aire y una sola señal cromática. */
+.v-grid,.steps,.network,.geolist,.formulaView,.scenario,.refview{gap:16px}
+.tile,.cream .tile,.duo .tile:first-child,.duo .tile:last-child{position:relative;border:1px solid #d5d7ff3b;border-top:1px solid #d5d7ff3b;border-radius:12px;background:#ffffff0d;box-shadow:none;padding:24px 25px 20px;justify-content:center}
+.cream .tile{background:#fff;border-color:#e5e1ed;box-shadow:0 10px 28px #2424660d}
+.tile:nth-child(4n+1){--card-accent:var(--pink)}.tile:nth-child(4n+2){--card-accent:var(--sky)}.tile:nth-child(4n+3){--card-accent:var(--yellow)}.tile:nth-child(4n+4){--card-accent:var(--green)}
+.tile:before{content:'';position:absolute;top:0;left:24px;width:42px;height:4px;background:var(--card-accent);border-radius:0 0 4px 4px}
+.tile strong{font-size:27px;line-height:1.14;letter-spacing:-.027em;font-weight:800}
+.tile p{font-size:20px;line-height:1.3;margin:10px 0 0;opacity:.86}
+.cream .tile p{color:#535477;opacity:1}
+.tile .num{font-size:15px;letter-spacing:.12em;margin-bottom:13px;color:#ffe27b}
+.cream .tile .num{color:#b10b6b}
+.v-grid.many{gap:14px}
+.v-grid.many .tile{padding:20px 19px 15px}
+.v-grid.many .tile:before{left:19px;width:36px}
+.v-grid.many .tile strong{font-size:23px}
+.v-grid.many .tile p{font-size:17px;line-height:1.27;margin-top:7px}
+.v-grid.many .tile .num{font-size:13px;margin-bottom:8px}
+.duo{gap:22px}
+.duo .tile{padding:42px 38px}
+.duo .tile:before{left:38px;width:72px;height:5px}
+.duo .tile strong{font-size:39px}
+.duo .tile p{font-size:25px;line-height:1.34;max-width:540px}
+.duo .tile:first-child{background:#ea088c13}
+.duo .tile:last-child{background:#26abe217}
+.cream .duo .tile:first-child{background:#fff6fb}
+.cream .duo .tile:last-child{background:#f3fbfe}
+.steps{gap:14px}
+.steps .tile{padding:18px 23px}
+.steps .tile strong{font-size:24px}
+.steps .tile p{font-size:18px;line-height:1.23;margin-top:7px}
+.steps.seven .tile{padding:16px 19px}
+.steps.seven .tile strong{font-size:21px}
+.steps.seven .tile p{font-size:17px}
+.journey{gap:17px}
+.journey .tile{padding:22px 22px 18px}
+.journey .tile:not(:last-child):after{right:-15px;top:46%;font-size:24px;color:var(--yellow)}
+.journey .tile strong{font-size:25px}
+.journey .tile p{font-size:19px}
+.network{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.network .tile{border-radius:12px;align-items:flex-start;text-align:left;padding:24px 27px}
+.network .tile strong{font-size:27px}
+.network .tile p{font-size:19px}
+.formulaView .tile{align-items:center;text-align:center}
+.formulaView p{font-size:39px!important;color:#8ee6ff}
+.cream .formulaView p{color:#b10b6b}
+.scenario .tile{padding:37px}
+.scenario .tile strong{font-size:40px}
+.scenario .tile p{font-size:24px}
+.tableview{border-spacing:0 8px;font-size:20px}
+.tableview th{background:#ffffff18;padding:12px 20px;font-size:15px}
+.tableview td{background:#ffffff0d;padding:14px 20px;line-height:1.24}
+.cream .tableview th{background:#e9e8f1}.cream .tableview td{background:#fff}
+.tableview tr td:first-child,.tableview tr td:last-child{border-radius:0}
+.refview{gap:12px}
+.refitem{border-left:3px solid var(--sky);background:#fff;border-radius:4px 10px 10px 4px;padding:13px 17px;box-shadow:0 5px 18px #2424660b}
+.refitem:nth-child(4n+1){border-left-color:var(--pink)}.refitem:nth-child(4n+3){border-left-color:var(--green)}
+.refitem b{font-size:18px}.refitem a{font-size:14px;margin-top:6px;color:#245d85}
+.geoart{width:37%;border-radius:12px;background:radial-gradient(circle at 25% 25%,#87dcebaa,transparent 30%),linear-gradient(145deg,#186bb1,#242466 66%,#531b76)}
+.geolist{width:63%;gap:14px;padding-left:20px}
+.geolist .tile{padding:19px}
+.geolist .tile strong{font-size:23px}.geolist .tile p{font-size:18px}
+
+/* Portada y cierre: composiciones propias, dentro del mismo sistema. */
+.kind-cover{background:radial-gradient(circle at 78% 40%,#266da04d 0%,transparent 37%),radial-gradient(circle at 10% 93%,#ea088c27,transparent 36%),linear-gradient(122deg,#0b1033,#252260 73%,#1c1a53)}
+.kind-cover:before{right:-140px;top:85px}
+.kind-cover .main{top:151px;bottom:104px}
+.kind-cover .kicker{font-size:16px;margin-bottom:15px}
+.kind-cover .title{font-size:76px;line-height:1.04;max-width:1330px;margin-bottom:17px;letter-spacing:-.052em}
+.kind-cover .deck{font-size:25px;max-width:1345px;line-height:1.36;margin-bottom:15px;color:#e6e6fa;opacity:1}
+.slide.kind-cover[data-index="0"] .covervisual{grid-template-columns:1fr 1.08fr;gap:48px;align-items:center}
+.kind-cover .coverstatement{padding:0 0 3px 10px}
+.slide.kind-cover[data-index="0"] .coverpill{font-size:14px;letter-spacing:.18em;border:0;border-radius:0;border-left:3px solid var(--yellow);padding:8px 0 8px 17px;margin-bottom:15px;background:none;color:#ffe184}
+.slide.kind-cover[data-index="0"] .coverstatement h2{font-size:75px;line-height:.96;margin-bottom:20px;letter-spacing:-.058em}
+.kind-cover .coverstatement h2 span{color:#ff6dbd}
+.slide.kind-cover[data-index="0"] .coverstatement .lede{font-size:24px;line-height:1.31;max-width:490px;color:#e5e7fa}
+.slide.kind-cover[data-index="0"] .esteli-landscape{height:356px;max-width:none;width:100%;filter:drop-shadow(0 23px 34px #03051888)}
+.kind-cover .esteli-landscape img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;border-radius:10px;outline:1px solid #ffffff33;outline-offset:9px}
+.kind-cover .esteli-caption{right:0;bottom:0;font-size:13px;letter-spacing:.09em;padding:10px 13px;border-radius:5px 0 5px 0;background:#111541e8}
+.kind-cover .focus{margin-top:14px;background:#ffffff13;font-size:19px;max-width:100%}
+.kind-closing .closevisual{font-size:76px;line-height:1.1;max-width:1270px}
+.kind-closing .closevisual span{color:#ff7dc6}
+.kind-qr .qrview{gap:50px;grid-template-columns:1fr 375px}
+.kind-qr .instructions h2{font-size:45px}
+.kind-qr .instructions p{font-size:27px}
+.qrbox{border-radius:12px;box-shadow:0 17px 40px #0d0c3338}
+.noteOverlay .panel,.indexOverlay .panel{border-radius:14px;box-shadow:0 30px 95px #0008}
+.indexes button{border-radius:7px}
+
+/* Herramientas globales: no se vuelven a montar al cambiar de diapositiva. */
+.presentationTools{position:fixed;top:13px;right:168px;z-index:24;display:flex;align-items:flex-start;gap:10px;color:#fff}
+.timeModule{position:relative;min-width:230px;padding:8px 12px 9px;border:1px solid #ffffff42;border-radius:11px;background:#141641e8;box-shadow:0 8px 24px #05051b50;backdrop-filter:blur(14px)}
+.timeCaption{display:block;font-size:9px;line-height:1;letter-spacing:.17em;font-weight:800;color:#cbd5f5}
+.timeMain{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:4px 0 5px}
+#elapsedTime{font-size:23px;line-height:1;font-weight:850;letter-spacing:.07em;font-variant-numeric:tabular-nums;color:#fff}
+.timeState{font-size:10px;font-weight:700;color:#ffe17a;white-space:nowrap}
+.timeActions{display:flex;gap:8px}
+.timeActions button,.timeConfirm button{border:0;border-radius:5px;background:#ffffff20;color:#fff;font-size:11px;font-weight:800;padding:5px 9px;line-height:1.2}
+.timeActions #timePrimary{background:#ffcb0c;color:#211c50}
+.timeActions button:hover,.timeConfirm button:hover{filter:brightness(1.13)}
+.timeConfirm{position:absolute;top:calc(100% + 6px);left:0;right:0;display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 7px;border:1px solid #ffffff6b;border-radius:8px;background:#242466;box-shadow:0 10px 25px #0808258f;font-size:11px;font-weight:700;white-space:nowrap}
+.timeConfirm[hidden],.timeActions button[hidden]{display:none}
+.timeConfirm #timeConfirmYes{background:#ffcb0c;color:#211c50}
+.presentToggle{height:44px;min-width:122px;padding:0 13px;border:1px solid #ffffff55;border-radius:9px;background:#242466eb;color:#fff;font-size:11px;font-weight:850;letter-spacing:.09em;box-shadow:0 8px 25px #05051b56;backdrop-filter:blur(14px)}
+.presentToggle span{font-size:20px;vertical-align:-2px;margin-right:4px}
+.presentToggle:hover{background:#34348a}
+.qaBell{top:17px;right:18px;min-height:44px;border-radius:9px;background:#141641e8;box-shadow:0 8px 24px #05051b50}
+.presentation-mode .foot .keys{opacity:.18}
+.presentation-mode .head-right{opacity:.58}
+.presentation-mode .presentationTools{opacity:.9;transition:opacity .2s ease}
+.presentation-mode .presentationTools:hover,.presentation-mode .presentationTools:focus-within{opacity:1}
+.presentation-mode .qaBell{opacity:.84;transition:opacity .2s ease}
+.presentation-mode .qaBell:hover,.presentation-mode .qaBell:focus-visible{opacity:1}
+@media(max-width:850px){.presentationTools{top:6px;right:69px;gap:5px}.timeModule{min-width:175px;padding:6px 8px}.timeCaption{font-size:7px}#elapsedTime{font-size:19px}.timeState{font-size:9px}.timeActions button{font-size:9px;padding:4px 6px}.presentToggle{height:38px;min-width:95px;font-size:9px;padding:0 7px}.presentToggle span{font-size:15px}.qaBell{top:6px;right:6px;min-height:38px}}
+@media(prefers-reduced-motion:reduce){.slide.active{animation:none}.arrowBtn,.presentation-mode .presentationTools,.presentation-mode .qaBell{transition:none}}
+@media print{.presentationTools,.qaBell{display:none!important}}
